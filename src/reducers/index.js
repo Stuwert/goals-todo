@@ -4,7 +4,7 @@ import todos from './todos';
 import goals from './goals';
 import loading from './loading';
 
-export defaultCombineReducers({
+export default combineReducers({
   todos,
   goals,
   loading

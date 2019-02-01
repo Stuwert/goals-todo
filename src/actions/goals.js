@@ -8,7 +8,7 @@ export const addGoal = (goal) => ({
   goal
 });
 
-export const removeGoal = (id) => ({
+const removeGoal = (id) => ({
   type: REMOVE_GOAL,
   id
 });
@@ -17,7 +17,7 @@ export const handleAddGoal = (name, callback) => {
   return (dispatch) => {
     return API.saveGoal(name)
       .then((goal) => {
-        dispatch(addGoalAction(goal));
+        dispatch(addGoal(goal));
         callback();
       })
       .catch(() => alert('There was an error.  Try again.'))
@@ -26,10 +26,10 @@ export const handleAddGoal = (name, callback) => {
 
 export const handleDeleteGoal = (goal) => {
   return (dispatch) => {
-    dispatch(removeGoalAction(goal.id));
+    dispatch(removeGoal(goal.id));
     return API.deleteGoal(goal.id)
       .catch(() => {
-        dispatch(addGoalAction(goal));
+        dispatch(addGoal(goal));
         alert('an error occured');
       })
   }

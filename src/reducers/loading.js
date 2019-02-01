@@ -1,14 +1,14 @@
 import {
-  ADD_GOAL,
-  REMOVE_GOAL
-} from '../actions/goals';
+  RECEIVE_DATA
+} from '../actions/shared';
 
-export default (state = true, action) => {
-  const suffix = action.type.split('/');
-  switch (suffix) {
+const loading = (state = true, action) => {
+  switch (action.type) {
     case RECEIVE_DATA:
       return false;
     default:
       return state;
   }
 }
+
+export default loading;

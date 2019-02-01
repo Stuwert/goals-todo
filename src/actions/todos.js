@@ -20,7 +20,7 @@ export const removeTodo = (id) => {
 
 // Actions return object representations of an event
 // Abstraction layer
-export const toggleTodoAction = (id) => {
+export const toggleTodo = (id) => {
   return {
     type: TOGGLE_TODO,
     id,
@@ -28,12 +28,12 @@ export const toggleTodoAction = (id) => {
 }
 
 
-export const handleDeleteTodo = (todo) {
+export const handleDeleteTodo = (todo) => {
   return (dispatch) => {
-    dispatch(removeTodoAction(todo.id));
+    dispatch(removeTodo(todo.id));
     return API.deleteTodo(todo.id)
       .catch(() => {
-        dispatch(addTodoAction(todo));
+        dispatch(addTodo(todo));
         alert('an error occurred.  Try again.')
       })
   }
@@ -43,7 +43,7 @@ export const handleAddTodo = (name, callback) => {
   return (dispatch) => {
     return API.saveTodo(name)
       .then((todo) => {
-        dispatch(addTodoAction(todo));
+        dispatch(addTodo(todo));
         callback();
       })
       .catch(() => alert('There was an error.  Try again.'))
@@ -52,10 +52,10 @@ export const handleAddTodo = (name, callback) => {
 
 export const handleToggleTodo = (id) => {
   return (dispatch) => {
-    dispatch(toggleTodoAction(id));
+    dispatch(toggleTodo(id));
     return API.toggleTodo(id)
       .catch(() => {
-        dispatch(toggleTodoAction(id));
+        dispatch(toggleTodo(id));
         alert('There was an error. Try again');
       });
   }

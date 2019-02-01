@@ -7,9 +7,9 @@ export const generateId = () => {
 
 // App Code
 
-const RECEIVE_DATA = 'RECEIVE_DATA';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
 
-export const receiveDataAction = (todos, goals) => {
+const receiveDataAction = (todos, goals) => {
   return {
     type: RECEIVE_DATA,
     todos,

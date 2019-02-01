@@ -1,15 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Todos from './Todos';
+import Goals from './Goals';
+import { connect } from 'react-redux';
 
-class App extends Component {
+import {
+  handleInitialData
+} from '../actions/shared';
+
+class App extends React.Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    dispatch(handleInitialData());
+  }
   render() {
+    const { loading } = this.props;
+
+    if (loading === true) {
+      return <h3>Loading</h3>
+    }
+
     return (
-      <div className="App">
-        <header className="App-header">
-          Hello World
-        </header>
+      <div>
+        React APP
+        <Todos />
+        <Goals />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default connect((state) => ({
+  loading: state.loading
+}))(App);
